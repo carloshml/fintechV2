@@ -1,5 +1,4 @@
-# Projeto Fintech com mensageria  -API
-
+# Wallet -API
 projeto em Java 17 Spring para simular back-end de uma fintech
 
 -API com Spring Boot
@@ -18,25 +17,13 @@ projeto em Java 17 Spring para simular back-end de uma fintech
 
 -TESTES UNITÁRIOS
 
-Utilize o comando `docker compose up`  para  iniciar o container 
-
-
-# transfer-api
-Utilize o comando `cd \transfer-api`
-Utilize o comando `docker build -t transfer-app .`  para criar sua imagem
  
 
 
 # wallet-api
-Utilize o comando `cd \wallet-api`
+ 
 Utilize o comando `docker build -t wallet-app .`  para criar sua imagem
-
+Utilize o comando `docker compose up`  para  iniciar o container 
 
 ` - utilidades`
 caminho para acessar o swagger  `http://localhost:9081/swagger-ui/index.html#/`
-
-
-
-# Arquitetura
-
-<img src="docs/images/architecture.png" alt="clean-architecture-diagram-1.png" width="700">
