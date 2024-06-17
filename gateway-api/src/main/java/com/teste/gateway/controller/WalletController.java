@@ -49,5 +49,15 @@ public class WalletController {
 		var resp = walletService.deposit(id,value);
 		return ResponseEntity.ok(resp); 	 
 	}
+	
+	@GetMapping("/wallets/withdraw") 
+	@Operation(summary="Sacar valor da Carteira")
+	public ResponseEntity<Wallet> withdraw(
+			@RequestParam Long id,
+			@RequestParam BigDecimal value
+			) {
+		var resp = walletService.withdraw(id,value);
+		return ResponseEntity.ok(resp); 	 
+	}
 
 }

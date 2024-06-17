@@ -86,7 +86,7 @@ public class WalletService {
 		Wallet wallets = null;
 		try {
 			ResponseEntity<Wallet> response = restTemplate.exchange(fidByIdURL, HttpMethod.GET, null, Wallet.class);
-			logger.info(">> response.getStatusCode()" + response.getStatusCode());
+			 
 			
 			if (response.getStatusCode() == HttpStatus.OK) {
 				wallets = response.getBody();
@@ -105,6 +105,28 @@ public class WalletService {
 	public Wallet deposit(Long idWallet, BigDecimal value) {
 		String fidByIdURL = urlWalletApi + "/deposit?id=" + idWallet+"&value="+value;
 		logger.info(">> deposit Wallet urlWalletApi:" + fidByIdURL);
+		Wallet wallets = null;
+		try {
+			ResponseEntity<Wallet> response = restTemplate.exchange(fidByIdURL, HttpMethod.GET, null, Wallet.class);
+			logger.info(">> response.getStatusCode()" + response.getStatusCode());
+			
+			if (response.getStatusCode() == HttpStatus.OK) {
+				wallets = response.getBody();
+			} else {
+				throw new WalletNotFoundxception("Wallet id:" + idWallet + " doesn't exist ",
+						HttpStatus.UNPROCESSABLE_ENTITY);
+			}
+		} catch (HttpClientErrorException e) {
+			throw new WalletNotFoundxception(e.getMessage(), e.getStatusCode());
+		} catch (Exception e) {
+			throw new WalletNotFoundxception("Wallets API não encontrada", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return wallets;
+	}
+
+	public Wallet withdraw(Long idWallet, BigDecimal value) {
+		String fidByIdURL = urlWalletApi + "/withdraw?id=" + idWallet+"&value="+value;
+		logger.info(">> withdraw Wallet urlWalletApi:" + fidByIdURL);
 		Wallet wallets = null;
 		try {
 			ResponseEntity<Wallet> response = restTemplate.exchange(fidByIdURL, HttpMethod.GET, null, Wallet.class);

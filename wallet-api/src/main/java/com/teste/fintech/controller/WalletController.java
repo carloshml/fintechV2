@@ -56,7 +56,15 @@ public class WalletController {
 		return ResponseEntity.ok(resp); 	 
 	}
 	
- 
+	@GetMapping("withdraw") 
+	@Operation(summary="Sacar valor da Carteira")
+	public ResponseEntity<Wallet> withdraw(
+			@RequestParam Long id,
+			@RequestParam BigDecimal value
+			) {
+		var resp = walletService.withdraw(id,value);
+		return ResponseEntity.ok(resp); 	 
+	} 
 	
 	@GetMapping("ById/{id}")
 	public ResponseEntity<Wallet> GetById(@PathVariable(value = "id") Long idWallet) {
