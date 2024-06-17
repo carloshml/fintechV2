@@ -1,14 +1,18 @@
 package com.teste.fintech.consumer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.teste.fintech.controller.dto.TransferDto;
+import com.teste.fintech.controller.dto.TransferRecordDto;
 import com.teste.fintech.service.TransferService;
 
 @RestController
 public class TransferConsumer {
+
+	private static final Logger logger = LoggerFactory.getLogger(TransferConsumer.class);
 
 	private final TransferService transferService;
 
@@ -17,8 +21,9 @@ public class TransferConsumer {
 	}
 
 	@RabbitListener(queues = "${broker.queue.transfer.name}")
-	public void listEmailQueues(@Payload TransferDto dto) {
-		var resp = transferService.transfer(dto);
+	public void listEmailQueues(@Payload TransferRecordDto dto) {
+		logger.info(">> create Transfer:" + dto);
+		transferService.transfer(dto);
 
 	}
 
