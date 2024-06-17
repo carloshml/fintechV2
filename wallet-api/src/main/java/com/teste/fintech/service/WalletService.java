@@ -1,5 +1,6 @@
 package com.teste.fintech.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +13,8 @@ import com.teste.fintech.Exception.WalletNotFoundxception;
 import com.teste.fintech.controller.dto.CreateWalletDto;
 import com.teste.fintech.entity.Wallet;
 import com.teste.fintech.repository.WalletRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class WalletService {
@@ -42,5 +45,20 @@ public class WalletService {
 		return resp;
 
 	}
+
+	@Transactional
+	public Wallet deposit(Long id, BigDecimal value) {
+		try {
+			var resp = walletRepository.findById(id);
+			if (!resp.isPresent())
+				throw new WalletNotFoundxception(id, HttpStatus.NOT_FOUND);
+			resp.get().credit(value);
+			return walletRepository.save(resp.get());	
+		} catch (Exception e) {
+			 throw e;
+		} 
+	}
+
+ 
 
 }

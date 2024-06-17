@@ -1,11 +1,13 @@
 package com.teste.gateway.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.teste.gateway.controller.dto.CreateWalletDto;
@@ -35,6 +37,16 @@ public class WalletController {
 	@Operation(summary="Lista as wallets disponíveis no sistema")
 	public ResponseEntity<List<Wallet>> Get() {
 		var resp = walletService.findAll();
+		return ResponseEntity.ok(resp); 	 
+	}
+	
+	@GetMapping("/wallets/deposit") 
+	@Operation(summary="Depositar valor na Carteira")
+	public ResponseEntity<Wallet> deposit(
+			@RequestParam Long id,
+			@RequestParam BigDecimal value
+			) {
+		var resp = walletService.deposit(id,value);
 		return ResponseEntity.ok(resp); 	 
 	}
 

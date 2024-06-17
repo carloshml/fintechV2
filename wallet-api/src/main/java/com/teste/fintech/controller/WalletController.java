@@ -1,5 +1,6 @@
 package com.teste.fintech.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -45,13 +46,23 @@ public class WalletController {
 		return ResponseEntity.ok(resp); 	 
 	}
 	
+	@GetMapping("deposit") 
+	@Operation(summary="Depositar valor na Carteira")
+	public ResponseEntity<Wallet> deposit(
+			@RequestParam Long id,
+			@RequestParam BigDecimal value
+			) {
+		var resp = walletService.deposit(id,value);
+		return ResponseEntity.ok(resp); 	 
+	}
+	
+ 
+	
 	@GetMapping("ById/{id}")
 	public ResponseEntity<Wallet> GetById(@PathVariable(value = "id") Long idWallet) {
 		logger.info(">> findById id:" + idWallet); 
 		var resp = walletService.findById(idWallet);
-		return new ResponseEntity<Wallet>(resp.get(), HttpStatus.OK);
-		
-	 	 
+		return new ResponseEntity<Wallet>(resp.get(), HttpStatus.OK); 
 	}
 
 }
