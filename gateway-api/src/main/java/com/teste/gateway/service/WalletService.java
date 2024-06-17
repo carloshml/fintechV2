@@ -40,7 +40,7 @@ public class WalletService {
 		HttpEntity<CreateWalletDto> requestEntity = new HttpEntity<>(dto, headers);
 
 		try {
-			ResponseEntity<Wallet> response = restTemplate.postForEntity(urlWalletApi + "wallets", requestEntity,
+			ResponseEntity<Wallet> response = restTemplate.postForEntity(urlWalletApi  , requestEntity,
 					Wallet.class);
 			if (response.getStatusCode() == HttpStatus.OK) {
 				createdWallet = response.getBody();
@@ -60,7 +60,7 @@ public class WalletService {
 		logger.info(">> findAll Wallets urlWalletApi:" + urlWalletApi);
 		List<Wallet> wallets = new ArrayList<>();
 		try {
-			ResponseEntity<List> response = restTemplate.exchange(urlWalletApi + "wallets", HttpMethod.GET, null,
+			ResponseEntity<List> response = restTemplate.exchange(urlWalletApi  , HttpMethod.GET, null,
 					List.class);
 			if (response.getStatusCode() == HttpStatus.OK) {
 				wallets = response.getBody();
@@ -80,7 +80,7 @@ public class WalletService {
 	}
 
 	public Wallet findById(Long idWallet) {
-		String fidByIdURL = urlWalletApi + "walletById/" + idWallet;
+		String fidByIdURL = urlWalletApi + "/ById/" + idWallet;
 		logger.info(">> findById Wallet urlWalletApi:" + fidByIdURL);
 		Wallet wallets = null;
 		try {
