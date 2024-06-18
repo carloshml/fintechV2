@@ -21,9 +21,12 @@ import jakarta.transaction.Transactional;
 public class WalletService {
 	private static final Logger logger = LoggerFactory.getLogger(WalletService.class);
 	private final WalletRepository walletRepository;
+	private final WalletStatementService walletStatementService;
+ 
 
-	public WalletService(WalletRepository walletRepository) {
-		this.walletRepository = walletRepository;
+	public WalletService(WalletRepository wr, WalletStatementService wss) {
+		this.walletRepository = wr;	 
+		this.walletStatementService = wss;
 	}
 
 	public Wallet createWallet(CreateWalletDto dto) {
@@ -53,7 +56,8 @@ public class WalletService {
 		try {
 			var resp = walletRepository.findById(id);
 			if (!resp.isPresent())
-				throw new WalletNotFoundxception(id, HttpStatus.NOT_FOUND);
+				throw new WalletNotFoundxception(id, HttpStatus.NOT_FOUND);	 
+			walletStatementService.saveDeposit(resp.get(), value);
 			resp.get().credit(value);
 			return walletRepository.save(resp.get());
 		} catch (Exception e) {
@@ -67,7 +71,8 @@ public class WalletService {
 		try {
 			var resp = walletRepository.findById(id);
 			if (!resp.isPresent())
-				throw new WalletNotFoundxception(id, HttpStatus.NOT_FOUND);
+				throw new WalletNotFoundxception(id, HttpStatus.NOT_FOUND);			
+			walletStatementService.saveWithdraw(resp.get(), value);
 			resp.get().debit(value);
 			return walletRepository.save(resp.get());
 		} catch (Exception e) {
