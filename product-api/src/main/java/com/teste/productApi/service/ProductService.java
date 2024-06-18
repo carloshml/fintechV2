@@ -24,6 +24,7 @@ public class ProductService {
 	public Product creatProduct(CreateProductDto dto) {
 		var wallet = walletRepository.findById(dto.owner());
 		// validaria se a carteira existe
+		// validaria se o nome é único
 		var product = dto.create(wallet.get());	 
 		return producRepository.save(product);
 	}

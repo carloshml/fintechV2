@@ -31,6 +31,7 @@ public class Product {
 
 	private Integer quantity;
 
+	@Column(name = "name", unique = true)
 	private String name;
 
 	public Product() {
