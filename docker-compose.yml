@@ -71,7 +71,7 @@ services:
     networks:
       - springboot-mysql-network 
 
-  produto-app:
+ produto-app:
     build:
       context: ./product-api
       dockerfile: Dockerfile    

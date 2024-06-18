@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotNull;
 
 public record CreateWalletDto(
 		@NotBlank String fullName,
-		@NotBlank	String cpfCnpj,
+		@NotBlank String cpfCnpj,
 		@NotBlank String email,
 		@NotBlank String password,
 		@NotNull WalletType.Enum  walletType
