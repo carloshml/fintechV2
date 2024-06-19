@@ -89,8 +89,12 @@ public class Product implements Serializable {
 		this.name = name;
 	}
 
-	public void debit(BigDecimal value) {
+	public void reduce(BigDecimal value) {
 		this.quantity = this.quantity.subtract(value);
+	}
+	
+	public void encrease(BigDecimal value) {
+		this.quantity = this.quantity.add(value);
 	}
 
 }

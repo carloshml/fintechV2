@@ -10,8 +10,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_sale_status")
-public class SaleStatus implements Serializable {
+@Table(name = "tb_status")
+public class Status implements Serializable {
 
 	/**
 	 * 
@@ -24,10 +24,10 @@ public class SaleStatus implements Serializable {
 
 	private String description;
 
-	public SaleStatus() {
+	public Status() {
 	}
 
-	public SaleStatus(Long id, String description) {
+	public Status(Long id, String description) {
 		this.id = id;
 		this.description = description;
 	}
@@ -52,7 +52,9 @@ public class SaleStatus implements Serializable {
 
 		CREATED(1L, "created"),
 		PROCESSING(2L, "processing"),
-		DELIVERED(2L, "delivered");
+		DELIVERED(3L, "delivered"),
+		CANCELED(4L, "canceled "),
+		EXECUTED(5L, "executed");
 
 		private Enum(Long id, String description) {
 			this.id = id;
@@ -62,8 +64,8 @@ public class SaleStatus implements Serializable {
 		private Long id;
 		private String description;
 
-		public SaleStatus get() {
-			return new SaleStatus(id, description);
+		public Status get() {
+			return new Status(id, description);
 		}
 
 	}
@@ -81,7 +83,7 @@ public class SaleStatus implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SaleStatus other = (SaleStatus) obj;
+		Status other = (Status) obj;
 		return Objects.equals(description, other.description) && Objects.equals(id, other.id);
 	}
 

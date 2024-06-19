@@ -31,7 +31,7 @@ public class Sale implements Serializable {
 	@JoinColumn(name = "product_id")
 	private Product product;
 	@ManyToOne
-	@JoinColumn(name = "wallet_sender_id")
+	@JoinColumn(name = "wallet_payer_id")
 	private Wallet payer;
 
 	@Column(name = "price")
@@ -39,10 +39,10 @@ public class Sale implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "sale_status_id")
-	private SaleStatus saleStatus = SaleStatus.Enum.CREATED.get();
+	private Status saleStatus = Status.Enum.CREATED.get();
 
 	@Column(name = "sale_time")
-	private LocalDateTime saleTime;
+	private LocalDateTime modifiedTime;
 
 	private BigDecimal quantity;
 
@@ -54,7 +54,7 @@ public class Sale implements Serializable {
 		this.payer = payer2;
 		this.price = price2;
 		this.quantity = quantity2;
-		this.saleTime = LocalDateTime.now();
+		this.modifiedTime = LocalDateTime.now();
 	}
 
 	public Long getId() {
@@ -89,20 +89,21 @@ public class Sale implements Serializable {
 		this.price = price;
 	}
 
-	public SaleStatus getSaleStatus() {
+	public Status getSaleStatus() {
 		return saleStatus;
 	}
 
-	public void setSaleStatus(SaleStatus saleStatus) {
+	public void setSaleStatus(Status saleStatus) {
+		this.modifiedTime = LocalDateTime.now();
 		this.saleStatus = saleStatus;
 	}
 
-	public LocalDateTime getSaleTime() {
-		return saleTime;
+	public LocalDateTime getModifiedTime() {
+		return modifiedTime;
 	}
 
-	public void setSaleTime(LocalDateTime saleTime) {
-		this.saleTime = saleTime;
+	public void setModifiedTime(LocalDateTime modifiedTime) {
+		this.modifiedTime = modifiedTime;
 	}
 
 	public BigDecimal getQuantity() {

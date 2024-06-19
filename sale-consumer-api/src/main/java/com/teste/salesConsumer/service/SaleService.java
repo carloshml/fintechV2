@@ -1,6 +1,7 @@
 package com.teste.salesConsumer.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import com.teste.salesConsumer.entities.Sale;
 import com.teste.salesConsumer.repository.SaleRepository;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.constraints.NotNull;
 
 @Service
 public class SaleService {
@@ -32,21 +34,23 @@ public class SaleService {
 		logger.info(">> begin create  sales:");
 		var product = productService.findById(dto.product());
 		var payer = walletService.findById(dto.payer());
-
-		payer.get().debit(dto.price());
-		product.get().getOwner().credit(dto.price());
-		walletService.save(payer.get());
-		walletService.save(product.get().getOwner());
-
-		product.get().debit(dto.quantity());
-		productService.save(product.get());
-
-		saleRepository.save(dto.createSale(product.get(), payer.get(), dto.price(), dto.quantity()));
+		walletService.withdraw(payer.getId(), dto.price());
+		walletService.deposit(product.getOwner().getId(),dto.price());		 
+		productService.reduce(product.getId(),dto.quantity());
+		this.save(dto.createSale(product, payer, dto.price(), dto.quantity()));
 		logger.info(">> end create  sales:");
 	}
 
 	public List<Sale> findAll() {
 		return saleRepository.findAll();
+	}
+
+	public Sale save(Sale sale) {
+		return saleRepository.save(sale);
+	}
+
+	public Optional<Sale>  findById(Long id) {
+		return saleRepository.findById(id);
 	}
 
 }

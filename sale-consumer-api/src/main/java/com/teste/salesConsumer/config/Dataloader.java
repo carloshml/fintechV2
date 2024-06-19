@@ -5,7 +5,7 @@ import java.util.Arrays;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
-import com.teste.salesConsumer.entities.SaleStatus; 
+import com.teste.salesConsumer.entities.Status; 
 import com.teste.salesConsumer.repository.SaleStatusRepository;
  
 
@@ -22,7 +22,7 @@ public class Dataloader implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception { 
-		Arrays.stream(SaleStatus.Enum.values())
+		Arrays.stream(Status.Enum.values())
 		 .forEach(saleStatus -> saleStatusRepository.save(saleStatus.get()));	 
 	}
 

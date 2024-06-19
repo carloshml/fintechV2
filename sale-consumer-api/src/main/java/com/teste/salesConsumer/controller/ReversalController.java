@@ -9,27 +9,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.teste.salesConsumer.entities.Sale;
-import com.teste.salesConsumer.service.SaleService;
+import com.teste.salesConsumer.entities.Reversal; 
+import com.teste.salesConsumer.service.ReversalService;
+ 
 
 import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
-@RequestMapping("/sale")
-public class SaleController {
-	private static final Logger logger = LoggerFactory.getLogger(SaleController.class); 
+@RequestMapping("/reversal")
+public class ReversalController {
+	private static final Logger logger = LoggerFactory.getLogger(ReversalController.class); 
 
-	private final SaleService saleService;
+	private final ReversalService reversalService;
 
-	public SaleController(SaleService ss) {
-		this.saleService = ss;
+	public ReversalController(ReversalService ss) {
+		this.reversalService = ss;
 	}
 	
 	@GetMapping 
-	@Operation(summary="Lista as sales relaizadas")
-	public ResponseEntity<List<Sale>> Get() {
+	@Operation(summary="Lista as reversal relaizadas")
+	public ResponseEntity<List<Reversal>> Get() {
 		logger.info(">> list sales:" );
-		var resp = saleService.findAll();
+		var resp = reversalService.findAll();
 		return ResponseEntity.ok(resp); 	 
 	}
 

@@ -42,11 +42,9 @@ public class SaleServiceTest {
 		);
 		Wallet payer = createWallet();
 		Product product = createProduct();
-		Mockito.when(productService.findById(Mockito.any())).thenReturn(Optional.of(product));
-		Mockito.when(walletService.findById(Mockito.any())).thenReturn(Optional.of(payer));
-		saleService.createASale(dto);
-		Mockito.verify(walletService, Mockito.times(2)).save(Mockito.any());
-		Mockito.verify(productService).save(Mockito.any());
+		Mockito.when(productService.findById(Mockito.any())).thenReturn(product);
+		Mockito.when(walletService.findById(Mockito.any())).thenReturn(payer);
+		saleService.createASale(dto); 
 		Mockito.verify(saleRepository).save(Mockito.any());		 
 		assertThat(product.getQuantity()).isEqualTo(new BigDecimal("995.0"));
 		assertThat(product.getOwner().getBalance()).isEqualTo(new BigDecimal("1100.00"));

@@ -22,9 +22,9 @@ public class SaleConsumer {
 	}
 
 	@RabbitListener(queues = "${broker.queue.sale.name}")
-	public void listEmailQueues(@Payload CreateSaleRecordDto dto) {
+	public void createASale(@Payload CreateSaleRecordDto dto) {
 		logger.info(">> create sale:" + dto);
-		 saleService.createASale(dto);
+		saleService.createASale(dto);
 	}
 
 }
