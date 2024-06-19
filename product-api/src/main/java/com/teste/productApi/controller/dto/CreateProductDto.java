@@ -10,7 +10,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record CreateProductDto( 
-		@NotNull @Min(  (long) 0.1)  BigDecimal value, 
+		@NotNull @Min(  (long) 0.1)  BigDecimal price, 
 		@NotNull Long owner,  
 		@NotNull Integer quantity, 
 		@NotNull @NotBlank String name		
@@ -18,7 +18,7 @@ public record CreateProductDto(
 	
 	public  Product create(Wallet owner) {		
 		return new Product(
-				    value, 
+				    price, 
 				    owner,
 				    quantity, 
 				    name	
