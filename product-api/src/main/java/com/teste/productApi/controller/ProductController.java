@@ -46,6 +46,32 @@ public class ProductController {
 		return ResponseEntity.ok(resp); 	 
 	}
 	
-	 
+	@GetMapping("byId/{id}")
+	@Operation(summary="Procura produto pelo id")
+	public ResponseEntity<Product> findById(@PathVariable(value = "id") Long id) {
+		logger.info(">> findById id:" + id); 
+		var resp = productService.findById(id);
+		return new ResponseEntity<Product>(resp, HttpStatus.OK); 
+	} 
+	
+	@GetMapping("reduce") 
+	@Operation(summary="reduz quandidade do produto")
+	public ResponseEntity<Product> reduce(
+			@RequestParam Long id,
+			@RequestParam BigDecimal quantity
+			) {	 
+		logger.info(">> reduce id:" + id); 
+		var resp = productService.reduce(id,quantity );
+		return ResponseEntity.ok(resp); 
+	}
+	
+	@GetMapping("encrease")
+	@Operation(summary="aumenta quantidade do produto")
+	public ResponseEntity<Product> encrease(@RequestParam Long id,
+			@RequestParam BigDecimal quantity) { 
+		logger.info(">> encrease id:" + id); 
+		var resp = productService.encrease(id,quantity );
+		return ResponseEntity.ok(resp); 
+	}
 
 }

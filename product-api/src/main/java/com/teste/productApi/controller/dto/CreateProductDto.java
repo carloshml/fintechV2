@@ -12,7 +12,7 @@ import jakarta.validation.constraints.NotNull;
 public record CreateProductDto( 
 		@NotNull @Min(  (long) 0.1)  BigDecimal price, 
 		@NotNull Long owner,  
-		@NotNull Integer quantity, 
+		@NotNull BigDecimal quantity, 
 		@NotNull @NotBlank String name		
 		) {
 	

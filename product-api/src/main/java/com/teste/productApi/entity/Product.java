@@ -36,7 +36,7 @@ public class Product implements Serializable {
 	@JoinColumn(name = "wallet_id")
 	private Wallet owner;
 
-	private Integer quantity;
+	private BigDecimal quantity;
 
 	@Column(name = "name", unique = true)
 	private String name;
@@ -44,7 +44,7 @@ public class Product implements Serializable {
 	public Product() {
 	}
 
-	public Product(BigDecimal value2, Wallet wallet, Integer quantity2, String name2) {
+	public Product(BigDecimal value2, Wallet wallet, BigDecimal quantity2, String name2) {
 		this.price = value2;
 		this.owner = wallet;
 		this.quantity = quantity2;
@@ -75,11 +75,11 @@ public class Product implements Serializable {
 		this.owner = owner;
 	}
 
-	public Integer getQuantity() {
+	public BigDecimal getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(Integer quantity) {
+	public void setQuantity(BigDecimal quantity) {
 		this.quantity = quantity;
 	}
 
@@ -89,6 +89,14 @@ public class Product implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public void reduce(BigDecimal value) {
+		this.quantity = this.quantity.subtract(value);
+	}
+	
+	public void encrease(BigDecimal value) {
+		this.quantity = this.quantity.add(value);
 	}
 
 }
