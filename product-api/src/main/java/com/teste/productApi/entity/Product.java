@@ -1,5 +1,6 @@
 package com.teste.productApi.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import jakarta.persistence.Column;
@@ -16,14 +17,20 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tb_product")
-public class Product {
+public class Product implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "balance")
-	private BigDecimal value = BigDecimal.ZERO;
+	@Column(name = "price")
+	private BigDecimal price = BigDecimal.ZERO;
 
 	@ManyToOne
 	@JoinColumn(name = "wallet_id")
@@ -38,10 +45,10 @@ public class Product {
 	}
 
 	public Product(BigDecimal value2, Wallet wallet, Integer quantity2, String name2) {
-		this.value =  value2;	
+		this.price = value2;
 		this.owner = wallet;
-		this.quantity =  quantity2;
-		this.name =  name2;
+		this.quantity = quantity2;
+		this.name = name2;
 	}
 
 	public Long getId() {
@@ -52,12 +59,12 @@ public class Product {
 		this.id = id;
 	}
 
-	public BigDecimal getValue() {
-		return value;
+	public BigDecimal getPrice() {
+		return price;
 	}
 
-	public void setValue(BigDecimal value) {
-		this.value = value;
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
 
 	public Wallet getOwner() {
