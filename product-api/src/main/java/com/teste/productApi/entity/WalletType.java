@@ -1,5 +1,6 @@
 package com.teste.productApi.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -10,7 +11,13 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_wallet_type")
-public class WalletType {
+public class WalletType implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
