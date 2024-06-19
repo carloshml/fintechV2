@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.teste.gateway.Exception.InsufitientBalanceException;
 import com.teste.gateway.Exception.TransferNotAllowerForWalletTypeException;
-import com.teste.gateway.entity.TransferRecordDto;
+import com.teste.gateway.controller.dto.TransferRecordDto;
 import com.teste.gateway.entity.Wallet;
 import com.teste.gateway.producers.TransferProducer;
  

@@ -1,4 +1,4 @@
-package com.teste.gateway.entity;
+package com.teste.gateway.controller.dto;
 
 import java.math.BigDecimal;
 import java.util.UUID;

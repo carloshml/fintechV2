@@ -6,24 +6,25 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.teste.gateway.controller.dto.CreateSaleRecordDto;
 import com.teste.gateway.controller.dto.TransferRecordDto;
 
  
 
 @Component
-public class TransferProducer {
-	private static final Logger logger = LoggerFactory.getLogger(TransferProducer.class);
+public class SaleProducer {
+	private static final Logger logger = LoggerFactory.getLogger(SaleProducer.class);
 	final RabbitTemplate rabbitTemplate;
 
-	public TransferProducer(RabbitTemplate rabbitTemplate) {
+	public SaleProducer(RabbitTemplate rabbitTemplate) {
 		this.rabbitTemplate = rabbitTemplate;
 	}
 
-	@Value("${broker.queue.email.name}")
+	@Value("${broker.queue.sale.name}")
 	private String routingKey;
 
-	public void publishTransfer(TransferRecordDto dto) {  
-		logger.info(">> publishTransfer Transfer:" + dto); 
+	public void publishSale(CreateSaleRecordDto dto) {  
+		logger.info(">> publishSale sale:" + dto); 
 		rabbitTemplate.convertAndSend("", routingKey, dto);
 	}
 
