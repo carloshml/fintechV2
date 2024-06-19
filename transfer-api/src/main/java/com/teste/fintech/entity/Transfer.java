@@ -1,5 +1,6 @@
 package com.teste.fintech.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -16,7 +17,12 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tb_transfer")
-public class Transfer {
+public class Transfer implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
