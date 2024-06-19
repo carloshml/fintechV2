@@ -18,14 +18,15 @@ import org.springframework.web.client.RestTemplate;
 
 import com.teste.gateway.Exception.WalletNotFoundxception;
 import com.teste.gateway.controller.dto.CreateProductDto;
- 
+
 import com.teste.gateway.entity.Product;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 @Service
 public class ProductService {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(WalletService.class);
 
 	@Value("${url.produto.api.host}")
@@ -33,7 +34,7 @@ public class ProductService {
 	private RestTemplate restTemplate = new RestTemplate();
 
 	public Product createProdut(@Valid CreateProductDto dto) {
-		
+
 		logger.info(">> createProdut:" + dto);
 		Product createdWallet = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -41,8 +42,7 @@ public class ProductService {
 		HttpEntity<CreateProductDto> requestEntity = new HttpEntity<>(dto, headers);
 
 		try {
-			ResponseEntity<Product> response = restTemplate.postForEntity(urlProdutoApi  , requestEntity,
-					Product.class);
+			ResponseEntity<Product> response = restTemplate.postForEntity(urlProdutoApi, requestEntity, Product.class);
 			if (response.getStatusCode() == HttpStatus.OK) {
 				createdWallet = response.getBody();
 			} else {
@@ -55,16 +55,15 @@ public class ProductService {
 			throw new WalletNotFoundxception("Wallets API não encontrada", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return createdWallet;
-	 
+
 	}
 
 	public List<Product> findAll() {
-		
+
 		logger.info(">> findAll Products urlWalletApi:" + urlProdutoApi);
 		List<Product> product = new ArrayList<>();
 		try {
-			ResponseEntity<List> response = restTemplate.exchange(urlProdutoApi  , HttpMethod.GET, null,
-					List.class);
+			ResponseEntity<List> response = restTemplate.exchange(urlProdutoApi, HttpMethod.GET, null, List.class);
 			if (response.getStatusCode() == HttpStatus.OK) {
 				product = response.getBody();
 				// Now you can work with the List<Wallet> returned by the API
@@ -80,7 +79,27 @@ public class ProductService {
 			throw new WalletNotFoundxception("Wallets API não encontrada", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return product;
-	 
+
 	}
 
+	public Product findById(Long id) {
+		String fidByIdURL = urlProdutoApi + "/byId/" + id;
+		logger.info(">>  Product   findById:" + fidByIdURL);
+		Product produto = null;
+		try {
+			ResponseEntity<Product> response = restTemplate.exchange(fidByIdURL, HttpMethod.GET, null, Product.class);
+
+			if (response.getStatusCode() == HttpStatus.OK) {
+				produto = response.getBody();
+			} else {
+				throw new WalletNotFoundxception("Product id:" + id + " doesn't exist ",
+						HttpStatus.UNPROCESSABLE_ENTITY);
+			}
+		} catch (HttpClientErrorException e) {
+			throw new WalletNotFoundxception(e.getMessage(), e.getStatusCode());
+		} catch (Exception e) {
+			throw new WalletNotFoundxception("Product-API não encontrada", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return produto;
+	}
 }

@@ -36,16 +36,19 @@ public class SaleService {
 	private String urlProdutoApi;
 
 	private final WalletService walletService;
+	private final ProductService productService;
 	private final SaleProducer saleProducer;
 
-	public SaleService(WalletService wp, SaleProducer sp) {
+	public SaleService(WalletService wp, SaleProducer sp, ProductService ps) {
 		this.walletService = wp;
+		this.productService = ps;
 		this.saleProducer = sp;
 	}
 
 	public void createSale(CreateSaleRecordDto dto) {
 		logger.info(">> create Transfer:" + dto);
 		var sender = walletService.findById(dto.payer());	 
+		var product = productService.findById(dto.product());	 
 		saleProducer.publishSale(dto);
 	}
 

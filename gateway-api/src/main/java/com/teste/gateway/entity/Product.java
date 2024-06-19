@@ -9,7 +9,7 @@ public class Product {
 	private Long id;
 
 	 
-	private BigDecimal value = BigDecimal.ZERO;
+	private BigDecimal price = BigDecimal.ZERO;
 
 	 
 	private Wallet owner;
@@ -22,7 +22,7 @@ public class Product {
 	}
 
 	public Product(BigDecimal value2, Wallet wallet, Integer quantity2, String name2) {
-		this.value =  value2;	
+		this.price =  value2;	
 		this.owner = wallet;
 		this.quantity =  quantity2;
 		this.name =  name2;
@@ -34,14 +34,14 @@ public class Product {
 
 	public void setId(Long id) {
 		this.id = id;
+	} 
+
+	public BigDecimal getPrice() {
+		return price;
 	}
 
-	public BigDecimal getValue() {
-		return value;
-	}
-
-	public void setValue(BigDecimal value) {
-		this.value = value;
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
 
 	public Wallet getOwner() {

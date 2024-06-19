@@ -6,6 +6,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.teste.gateway.controller.dto.CreateReversalRecordDto;
 import com.teste.gateway.controller.dto.CreateSaleRecordDto;
 import com.teste.gateway.controller.dto.TransferRecordDto;
 
@@ -21,11 +22,20 @@ public class SaleProducer {
 	}
 
 	@Value("${broker.queue.sale.name}")
-	private String routingKey;
+	private String routingSale;
+	
+	
+	@Value("${broker.queue.reversal.name}")
+	private String routingreversal;
 
 	public void publishSale(CreateSaleRecordDto dto) {  
 		logger.info(">> publishSale sale:" + dto); 
-		rabbitTemplate.convertAndSend("", routingKey, dto);
+		rabbitTemplate.convertAndSend("", routingSale, dto);
+	}
+	
+	public void publishReversal(CreateReversalRecordDto dto) {  
+		logger.info(">> publishSale reversal:" + dto); 
+		rabbitTemplate.convertAndSend("", routingreversal, dto);
 	}
 
 }
