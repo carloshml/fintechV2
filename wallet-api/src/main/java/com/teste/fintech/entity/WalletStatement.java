@@ -1,5 +1,6 @@
 package com.teste.fintech.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -14,7 +15,12 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_wallet_statement")
-public class WalletStatement {
+public class WalletStatement implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
