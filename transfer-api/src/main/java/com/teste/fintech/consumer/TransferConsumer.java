@@ -4,12 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Component;
 
 import com.teste.fintech.controller.dto.TransferRecordDto;
 import com.teste.fintech.service.TransferService;
 
-@RestController
+@Component 
 public class TransferConsumer {
 
 	private static final Logger logger = LoggerFactory.getLogger(TransferConsumer.class);

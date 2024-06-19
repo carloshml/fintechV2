@@ -24,7 +24,6 @@ public class TransferService {
 	private final WalletRepository walletRepository;
 
 	public TransferService(TransferRepository trasnferRepository, WalletRepository walletRepository) {
-
 		this.transferRepository = trasnferRepository;
 		this.walletRepository = walletRepository;
 	}
