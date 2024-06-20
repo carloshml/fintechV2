@@ -7,31 +7,25 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.teste.gateway.controller.dto.CreateReversalRecordDto;
-import com.teste.gateway.controller.dto.CreateSaleRecordDto;
-import com.teste.gateway.controller.dto.TransferRecordDto;
 
- 
+import jakarta.validation.Valid;
 
 @Component
-public class SaleProducer {
+public class ReversalProducer {
 	private static final Logger logger = LoggerFactory.getLogger(SaleProducer.class);
+	
 	final RabbitTemplate rabbitTemplate;
-
-	public SaleProducer(RabbitTemplate rabbitTemplate) {
+	
+	public ReversalProducer(RabbitTemplate rabbitTemplate) {
 		this.rabbitTemplate = rabbitTemplate;
 	}
 
-	@Value("${broker.queue.sale.name}")
-	private String routingSale;
-	
-	
+	@Value("${broker.queue.reversal.name}")
+	private String routingreversal;
 
-
-	public void publishSale(CreateSaleRecordDto dto) {  
-		logger.info(">> publishSale sale:" + dto); 
-		rabbitTemplate.convertAndSend("", routingSale, dto);
+	public void publishReversal(@Valid CreateReversalRecordDto dto) {
+		logger.info(">> publishSale reversal:" + dto);
+		rabbitTemplate.convertAndSend("", routingreversal, dto);
 	}
-	
-	 
 
 }
