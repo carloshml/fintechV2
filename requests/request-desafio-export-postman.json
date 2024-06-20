@@ -1,0 +1,446 @@
+{
+    "info": {
+        "name": "RESTer",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "requests-desafio-test",
+            "item": [
+                {
+                    "name": "gatewayapi (9084)",
+                    "item": [
+                        {
+                            "name": "product",
+                            "item": [
+                                {
+                                    "request": {
+                                        "url": "localhost:9084/product",
+                                        "method": "POST",
+                                        "header": [
+                                            {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                            }
+                                        ],
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"quantity\": 50,\n    \"name\": \"Produto muito incrível\",\n    \"owner\": 4,\n    \"price\":0\n}"
+                                        }
+                                    },
+                                    "id": "rester-42",
+                                    "name": "create"
+                                },
+                                {
+                                    "request": {
+                                        "url": "localhost:9084/product",
+                                        "method": "GET",
+                                        "header": [
+                                            {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                            }
+                                        ]
+                                    },
+                                    "id": "rester-43",
+                                    "name": "list"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "sale",
+                            "item": [
+                                {
+                                    "name": "reversal",
+                                    "item": [
+                                        {
+                                            "request": {
+                                                "url": "localhost:9084/reversal",
+                                                "method": "POST",
+                                                "header": [
+                                                    {
+                                                        "key": "Content-Type",
+                                                        "value": "application/json"
+                                                    }
+                                                ],
+                                                "body": {
+                                                    "mode": "raw",
+                                                    "raw": "{\n    \"sale\": 1,\n    \"price\": 2,\n    \"payer\": 3,\n    \"quantity\":2\n     \n}"
+                                                }
+                                            },
+                                            "id": "rester-44",
+                                            "name": "create"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "sale",
+                                    "item": [
+                                        {
+                                            "request": {
+                                                "url": "localhost:9084/sale",
+                                                "method": "POST",
+                                                "header": [
+                                                    {
+                                                        "key": "Content-Type",
+                                                        "value": "application/json"
+                                                    }
+                                                ],
+                                                "body": {
+                                                    "mode": "raw",
+                                                    "raw": "{\n    \"price\": 2,\n    \"payer\": 3,\n    \"product\":2,\n    \"quantity\" : 2\n}"
+                                                }
+                                            },
+                                            "id": "rester-45",
+                                            "name": "create"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "transfer",
+                            "item": [
+                                {
+                                    "request": {
+                                        "url": "localhost:9084/transfer",
+                                        "method": "POST",
+                                        "header": [
+                                            {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                            }
+                                        ],
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"value\": 50,\n    \"payer\": 3,\n    \"payee\": 4\n}"
+                                        }
+                                    },
+                                    "id": "rester-46",
+                                    "name": "create"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "wallets",
+                            "item": [
+                                {
+                                    "name": "create",
+                                    "item": [
+                                        {
+                                            "name": "USER",
+                                            "item": [
+                                                {
+                                                    "request": {
+                                                        "url": "localhost:9084/wallets",
+                                                        "method": "POST",
+                                                        "header": [
+                                                            {
+                                                                "key": "Content-Type",
+                                                                "value": "application/json"
+                                                            }
+                                                        ],
+                                                        "body": {
+                                                            "mode": "raw",
+                                                            "raw": "{\n    \"fullName\": \"Joao\",\n    \"cpfCnpj\": \"Joao\",\n    \"email\": \"Joao\",\n    \"password\": \"Joao\",\n    \"walletType\": \"USER\"\n}"
+                                                        }
+                                                    },
+                                                    "id": "rester-47",
+                                                    "name": "Joao"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "request": {
+                                        "url": "localhost:9084/wallets/deposit?id=2&value=2",
+                                        "method": "GET",
+                                        "header": [
+                                            {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                            }
+                                        ]
+                                    },
+                                    "id": "rester-48",
+                                    "name": "deposit"
+                                },
+                                {
+                                    "request": {
+                                        "url": "localhost:9084/wallets",
+                                        "method": "GET",
+                                        "header": [
+                                            {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                            }
+                                        ]
+                                    },
+                                    "id": "rester-49",
+                                    "name": "list"
+                                },
+                                {
+                                    "request": {
+                                        "url": "localhost:9084/wallets/withdraw?id=2&value=2",
+                                        "method": "GET",
+                                        "header": [
+                                            {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                            }
+                                        ]
+                                    },
+                                    "id": "rester-50",
+                                    "name": "withdraw"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "product-api(9085)",
+                    "item": [
+                        {
+                            "request": {
+                                "url": "localhost:9085/product",
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"quantity\": 50,\n    \"name\": \"Produto Do pedro\",\n    \"owner\": 5,\n    \"price\": 33\n}"
+                                }
+                            },
+                            "id": "rester-51",
+                            "name": "create"
+                        },
+                        {
+                            "request": {
+                                "url": "localhost:9085/product",
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ]
+                            },
+                            "id": "rester-52",
+                            "name": "list"
+                        }
+                    ]
+                },
+                {
+                    "name": "sale(9087)",
+                    "item": [
+                        {
+                            "name": "reversal",
+                            "item": [
+                                {
+                                    "request": {
+                                        "url": "localhost:9087/reversal",
+                                        "method": "GET",
+                                        "header": [
+                                            {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                            }
+                                        ]
+                                    },
+                                    "id": "rester-53",
+                                    "name": "list"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "sale",
+                            "item": [
+                                {
+                                    "request": {
+                                        "url": "localhost:9087/sale",
+                                        "method": "GET",
+                                        "header": [
+                                            {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                            }
+                                        ]
+                                    },
+                                    "id": "rester-54",
+                                    "name": "list"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "transfer(9081)",
+                    "item": [
+                        {
+                            "request": {
+                                "url": "localhost:9081/transfer",
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"value\": 50,\n    \"payer\": 2,\n    \"payee\": 4\n}"
+                                }
+                            },
+                            "id": "rester-55",
+                            "name": "create"
+                        }
+                    ]
+                },
+                {
+                    "name": "wallets(9082)",
+                    "item": [
+                        {
+                            "name": "create",
+                            "item": [
+                                {
+                                    "request": {
+                                        "url": "localhost:9082/wallets",
+                                        "method": "POST",
+                                        "header": [
+                                            {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                            }
+                                        ],
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"fullName\": \"Maria\",\n    \"cpfCnpj\": \"Maria\",\n    \"email\": \"Maria\",\n    \"password\": \"Maria\",\n    \"walletType\": \"MERCHANT\"\n}"
+                                        }
+                                    },
+                                    "id": "rester-56",
+                                    "name": "MERCHANT"
+                                },
+                                {
+                                    "name": "USER",
+                                    "item": [
+                                        {
+                                            "request": {
+                                                "url": "localhost:9082/wallets",
+                                                "method": "POST",
+                                                "header": [
+                                                    {
+                                                        "key": "Content-Type",
+                                                        "value": "application/json"
+                                                    }
+                                                ],
+                                                "body": {
+                                                    "mode": "raw",
+                                                    "raw": "{\n    \"fullName\": \"Joao\",\n    \"cpfCnpj\": \"Joao\",\n    \"email\": \"Joao\",\n    \"password\": \"Joao\",\n    \"walletType\": \"USER\"\n}"
+                                                }
+                                            },
+                                            "id": "rester-57",
+                                            "name": "Joao"
+                                        },
+                                        {
+                                            "request": {
+                                                "url": "localhost:9082/wallets",
+                                                "method": "POST",
+                                                "header": [
+                                                    {
+                                                        "key": "Content-Type",
+                                                        "value": "application/json"
+                                                    }
+                                                ],
+                                                "body": {
+                                                    "mode": "raw",
+                                                    "raw": "{\n    \"fullName\": \"Pedro\",\n    \"cpfCnpj\": \"Pedro\",\n    \"email\": \"Pedro\",\n    \"password\": \"Pedro\",\n    \"walletType\": \"USER\"\n}"
+                                                }
+                                            },
+                                            "id": "rester-58",
+                                            "name": "Pedro"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "request": {
+                                "url": "localhost:9082/wallets/deposit?id=2&value=2",
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ]
+                            },
+                            "id": "rester-59",
+                            "name": "deposit"
+                        },
+                        {
+                            "request": {
+                                "url": "localhost:9082/wallets",
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ]
+                            },
+                            "id": "rester-60",
+                            "name": "list"
+                        },
+                        {
+                            "request": {
+                                "url": "localhost:9082/wallets/ById/2",
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ]
+                            },
+                            "id": "rester-61",
+                            "name": "walletById"
+                        },
+                        {
+                            "request": {
+                                "url": "localhost:9082/walletStatment/byWallet/4",
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ]
+                            },
+                            "id": "rester-62",
+                            "name": "walletStatment"
+                        },
+                        {
+                            "request": {
+                                "url": "localhost:9082/wallets/withdraw?id=2&value=2",
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ]
+                            },
+                            "id": "rester-63",
+                            "name": "withdraw"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
