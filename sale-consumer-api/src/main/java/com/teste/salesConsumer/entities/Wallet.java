@@ -120,12 +120,14 @@ public class Wallet implements Serializable {
 		return this.balance.compareTo(value) >= 0;
 	}
 
-	public void debit(BigDecimal value) {
+	public Wallet debit(BigDecimal value) {
 		this.balance = this.balance.subtract(value);
+		return this;
 	}
 
-	public void credit( BigDecimal value) {
-		this.balance =  this.balance.add(value);		
+	public Wallet credit( BigDecimal value) {
+		this.balance =  this.balance.add(value);
+		return this;
 	}
 
 }

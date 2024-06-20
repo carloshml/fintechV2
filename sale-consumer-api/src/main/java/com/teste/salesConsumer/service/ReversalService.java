@@ -40,16 +40,18 @@ public class ReversalService {
 	}
 
 	@Transactional
-	public void process(Reversal dto) {
+	public Reversal process(Reversal dto) {
 		logger.info(">> begin process  Reversal:");
 		Sale sale = dto.getSale();
 		walletService.deposit(sale.getPayer().getId(), dto.getPrice());
 		walletService.withdraw(sale.getProduct().getOwner().getId(), dto.getPrice());
-		productService.encrease(sale.getProduct().getId(), dto.getQuantity());
+		productService.encrease(sale.getProduct().getId(), dto.getQuantity());		
+		sale.setSaleStatus(Status.Enum.CANCELED.get());
 		saleService.save(sale);
 		dto.setStatus(Status.Enum.EXECUTED.get());
 		reversalRepository.save(dto);
 		logger.info(">> end  process  Reversal:");
+		return dto;
 	}
 
 	public List<Reversal> findAll() {

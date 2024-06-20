@@ -23,7 +23,7 @@ public class ReversalConsumer {
 
 	@RabbitListener(queues = "${broker.queue.reversal.name}")
 	public void createReversal(@Payload CreateReversalRecordDto dto) {
-		logger.info(">> create sale:" + dto);
+		logger.info(">> create Reversal:" + dto);
 		reversalService.createReversal(dto);
 	}
 
