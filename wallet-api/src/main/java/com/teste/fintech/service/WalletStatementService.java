@@ -9,17 +9,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import com.teste.fintech.Exception.WalletDataAlreadyExistisException;
-import com.teste.fintech.Exception.WalletNotFoundxception;
 import com.teste.fintech.Exception.WalletStatmentNotFoundException;
-import com.teste.fintech.controller.dto.CreateWalletDto;
 import com.teste.fintech.entity.Wallet;
 import com.teste.fintech.entity.WalletAction;
 import com.teste.fintech.entity.WalletStatement;
-import com.teste.fintech.repository.WalletRepository;
 import com.teste.fintech.repository.WalletStatmentRepository;
-
-import jakarta.transaction.Transactional;
 
 @Service
 public class WalletStatementService {

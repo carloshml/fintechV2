@@ -1,4 +1,4 @@
-package com.teste.fintech.repostory;
+package com.teste.fintech.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,10 +14,6 @@ import org.springframework.test.context.ActiveProfiles;
 import com.teste.fintech.controller.dto.CreateWalletDto;
 import com.teste.fintech.entity.Wallet;
 import com.teste.fintech.entity.WalletType;
-import com.teste.fintech.repository.WalletRepository;
-import com.teste.fintech.repository.WalletTypeRepository;
-
-import jakarta.persistence.EntityManager;
 
 @DataJpaTest
 @ActiveProfiles("test")
@@ -27,10 +23,7 @@ class WalletRepositoryTest {
 	WalletRepository walletRepository;
 	
 	@Autowired
-	WalletTypeRepository walletTypeRepository;
-
-	@Autowired
-	EntityManager entityManager;
+	WalletTypeRepository walletTypeRepository; 
 
 	@Test
 	@DisplayName("Should return an wallet sucessfully ")
@@ -45,9 +38,7 @@ class WalletRepositoryTest {
 	
 	@Test
 	@DisplayName("Should not return an wallet  ")
-	void findWalletError() {
-		 
-		 
+	void findWalletError() {  
 		Optional<Wallet> result = walletRepository.findByCpfCnpjOrEmail("205.881.120-89", "");
 		assertThat(result.isEmpty()).isTrue();
 	}
