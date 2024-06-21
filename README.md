@@ -2,7 +2,7 @@
 
 *Características gerais do projeto:* 
 
-* requests para servem importadas no postman se encontram na pasta `requests`*  
+* requests para serem importadas no postman se encontram na pasta `requests`*  
 
 
 * projetos em Java 17 Spring para simular back-end de uma fintech
