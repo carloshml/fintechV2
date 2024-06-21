@@ -1,5 +1,9 @@
-# Wallet -API
-projeto em Java 17 Spring para simular back-end de uma fintech
+# Product  -API
+
+
+*nesse microservico são criados so produtos *  
+
+- projeto em Java 17 Spring para simular back-end de uma fintech
 
 -API com Spring Boot
 
@@ -16,14 +20,3 @@ projeto em Java 17 Spring para simular back-end de uma fintech
 -Logs com o SLF4J
 
 -TESTES UNITÁRIOS
-
- 
-
-
-# wallet-api
- 
-Utilize o comando `docker build -t wallet-app .`  para criar sua imagem
-Utilize o comando `docker compose up`  para  iniciar o container 
-
-` - utilidades`
-caminho para acessar o swagger  `http://localhost:9081/swagger-ui/index.html#/`
