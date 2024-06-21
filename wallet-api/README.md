@@ -22,4 +22,4 @@
  - para ver a cobertura de teste `/target/site/jacoco/index.html` 
   
 ` - utilidades`
-  - caminho para acessar o swagger  `http://localhost:9081/swagger-ui/index.html#/`
+  - caminho para acessar o swagger  `http://localhost:9082/swagger-ui/index.html#/`
