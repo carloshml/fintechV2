@@ -26,6 +26,8 @@ public class ProductService {
 
 	public Product creatProduct(CreateProductDto dto) {
 		var wallet = walletRepository.findById(dto.owner());
+		if (!wallet.isPresent())
+			throw new FintechException("Walet do produto não existe", HttpStatus.NOT_FOUND);
 		// validaria se a carteira existe
 		// validaria se o nome é único
 		var product = dto.create(wallet.get());	 

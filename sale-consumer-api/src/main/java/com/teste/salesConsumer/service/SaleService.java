@@ -5,10 +5,14 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+ 
 import com.teste.salesConsumer.consumer.dto.CreateSaleRecordDto;
 import com.teste.salesConsumer.entities.Sale;
+import com.teste.salesConsumer.exception.FintechException;
+import com.teste.salesConsumer.exception.WalletNotFoundxception;
 import com.teste.salesConsumer.repository.SaleRepository;
 
 import jakarta.transaction.Transactional;
@@ -50,7 +54,10 @@ public class SaleService {
 	}
 
 	public Optional<Sale>  findById(Long id) {
-		return saleRepository.findById(id);
+		Optional<Sale> sale = saleRepository.findById(id);
+		if (!sale.isPresent())
+			throw new WalletNotFoundxception("Sale  não existe", HttpStatus.NOT_FOUND);
+		return sale;
 	}
 
 }
