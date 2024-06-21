@@ -10,7 +10,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.teste.fintech</groupId>
-	<artifactId>transfer</artifactId>
+	<artifactId>transfer-consumer-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>transfer-consumer-api</name>
 	<description>transfer consumer api teste para contratacao</description>

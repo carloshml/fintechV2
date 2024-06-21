@@ -55,21 +55,7 @@ services:
     networks:
       - springboot-mysql-network 
       
- cancellation-app:
-    build:
-      context: ./cancellation-api
-      dockerfile: Dockerfile    
-    depends_on:
-      mysqldb:
-        condition: service_healthy
-    ports:
-     - "9083:9081"
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:${MYSQLDB_PORT}/${MYSQL_DATABASE}
-      - SPRING_DATASOURCE_USERNAME=${MYSQL_USER}
-      - SPRING_DATASOURCE_PASSWORD=${MYSQL_PASSWORD}
-    networks:
-      - springboot-mysql-network 
+ 
 
  produto-app:
     build:
@@ -79,7 +65,7 @@ services:
       mysqldb:
         condition: service_healthy
     ports:
-     - "9083:9081"
+     - "9085:9085"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:${MYSQLDB_PORT}/${MYSQL_DATABASE}
       - SPRING_DATASOURCE_USERNAME=${MYSQL_USER}
@@ -90,10 +76,25 @@ services:
  gateway-app:
     build:
       context: ./gateway-api
-      dockerfile: Dockerfile    
-    
+      dockerfile: Dockerfile  
     ports:
-     - "9085:9085"
+     - "9084:9084"
+     
+ sale-consumer-api:
+    build:
+      context: ./sale-consumer-api
+      dockerfile: Dockerfile    
+    depends_on:
+      mysqldb:
+        condition: service_healthy
+    ports:
+     - "9087:9087"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:${MYSQLDB_PORT}/${MYSQL_DATABASE}
+      - SPRING_DATASOURCE_USERNAME=${MYSQL_USER}
+      - SPRING_DATASOURCE_PASSWORD=${MYSQL_PASSWORD}
+    networks:
+      - springboot-mysql-network 
    
     
 volumes:
