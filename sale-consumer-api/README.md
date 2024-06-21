@@ -1,5 +1,6 @@
 # Sale Consumer-API 
-  
+ 
+*nesse projeto são feitas as compras e os estornos (estornos das walles produtos e cancelamento da compra)*  
 * projetos em Java 17 Spring 
 
 * API com Spring Boot
