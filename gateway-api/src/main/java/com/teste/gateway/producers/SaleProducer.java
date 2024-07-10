@@ -6,9 +6,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.teste.gateway.controller.dto.CreateReversalRecordDto;
 import com.teste.gateway.controller.dto.CreateSaleRecordDto;
-import com.teste.gateway.controller.dto.TransferRecordDto;
 
  
 

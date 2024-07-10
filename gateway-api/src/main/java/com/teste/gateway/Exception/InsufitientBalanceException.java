@@ -17,7 +17,7 @@ public class InsufitientBalanceException extends FintechException {
 	public ProblemDetail toProblemDetail() {
 		// status 422
 		var pb = ProblemDetail.forStatus(HttpStatus.UNPROCESSABLE_ENTITY);
-		pb.setTitle("Insufitioent Balance, transfer is not allowed to transfer ");
+		pb.setTitle("Insufitient Balance, transfer is not allowed to transfer the value  "+this.value);
 		pb.setDetail(" You can not transfer a value greater than  your balance ");
 		return pb;
 	}

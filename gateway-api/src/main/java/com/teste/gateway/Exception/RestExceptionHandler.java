@@ -6,12 +6,19 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import feign.FeignException;
+
 @RestControllerAdvice
 public class RestExceptionHandler {
 
 	@ExceptionHandler(FintechException.class)
 	public ProblemDetail handleFintechException(FintechException e) {
 		return e.toProblemDetail();
+	}
+	
+	@ExceptionHandler(feign.FeignException.class)
+	public String handleFeignException(FeignException e) {
+		return e.contentUTF8();
 	}
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)

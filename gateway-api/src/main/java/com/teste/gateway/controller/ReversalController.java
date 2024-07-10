@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.teste.gateway.controller.dto.CreateReversalRecordDto;
-import com.teste.gateway.controller.dto.CreateSaleRecordDto;
 import com.teste.gateway.entity.Reversal;
 import com.teste.gateway.service.ReversalService;
 

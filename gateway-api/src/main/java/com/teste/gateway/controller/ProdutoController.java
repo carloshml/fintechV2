@@ -29,15 +29,14 @@ public class ProdutoController {
 	@PostMapping 
 	@Operation(summary="Criar um produto no sistema")
 	public ResponseEntity<Product> creatProduto(@RequestBody @Valid CreateProductDto dto) {
-		var wallet = productService.createProdut(dto);
-		return ResponseEntity.ok(wallet);
+		return productService.createProduct(dto);	 
 	}
 	
 	@GetMapping 
 	@Operation(summary="Lista os produtos do sistema")
 	public ResponseEntity<List<Product>> Get() {
-		var resp = productService.findAll();
-		return ResponseEntity.ok(resp); 	 
+		return  productService.findAll();
+	 
 	}
 	
 	 
