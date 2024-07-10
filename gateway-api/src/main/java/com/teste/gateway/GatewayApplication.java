@@ -10,10 +10,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  
 @SpringBootApplication
 @EnableFeignClients
-public class FintechApplication {
+public class GatewayApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FintechApplication.class, args);
+		SpringApplication.run(GatewayApplication.class, args);
 	}
 	
 	@Bean
