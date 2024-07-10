@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.teste.productApi.Exception.FintechException;
+import com.teste.productApi.Exception.ProdutctDataAlreadyExistisException;
 import com.teste.productApi.controller.dto.CreateProductDto;
 import com.teste.productApi.entity.Product;
 import com.teste.productApi.repository.ProducRepository;
@@ -25,13 +26,23 @@ public class ProductService {
 	}
 
 	public Product creatProduct(CreateProductDto dto) {
+		
+		var productData = producRepository.findByName(dto.name());
+
+		if (productData.isPresent()) {
+			throw new ProdutctDataAlreadyExistisException("Produto Já Existe");
+		}
+		
+		
 		var wallet = walletRepository.findById(dto.owner());
 		if (!wallet.isPresent())
 			throw new FintechException("Walet do produto não existe", HttpStatus.NOT_FOUND);
-		// validaria se a carteira existe
-		// validaria se o nome é único
+	 
 		var product = dto.create(wallet.get());	 
-		return producRepository.save(product);
+	 
+			return producRepository.save(product);
+	 
+		
 	}
 
 	public List<Product> findAll() {

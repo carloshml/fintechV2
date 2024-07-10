@@ -8,6 +8,14 @@ public class FintechException extends RuntimeException {
 	
 	private HttpStatus statusCode;
 	private String msg;
+	
+	public FintechException() {
+	 
+	}
+	
+	public FintechException(String detail) {
+		this.msg = detail;
+	}
 
 	public FintechException(String msg, HttpStatus statusCode) {
 		this.msg = msg;
